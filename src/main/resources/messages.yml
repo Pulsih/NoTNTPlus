@@ -1,0 +1,17 @@
+#################################################################
+#                                                               #
+#                                                               #
+#                    >> MESSAGES CONFIG <<                      #
+#                                                               #
+#                                                               #
+#################################################################
+
+
+#Reload command message
+reload_message: "&8[&a&lNo&c&lTNT&b&l+&8] &aPlugin reloaded!"
+
+#No permission command message
+nopermission_message: "&8[&a&lNo&c&lTNT&b&l+&8] &aYou don't have the permission!"
+
+#Unknown command message
+unknown_command: "&8[&a&lNo&c&lTNT&b&l+&8] &aUnknown command!"
