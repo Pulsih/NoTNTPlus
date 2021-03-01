@@ -1,11 +1,11 @@
 package me.pulsi_.notntplus.Managers;
 
-import me.pulsi_.notntplus.NoTNTPlus;
+import me.pulsi_.notntplus.Main;
 import org.bukkit.entity.Player;
 
 public class MessageManager {
 
-    ConfigManager messages = new ConfigManager(NoTNTPlus.getInstance(), "messages.yml");
+    ConfigManager messages = new ConfigManager(Main.getInstance(), "messages.yml");
 
         private Player player;
 
@@ -17,7 +17,7 @@ public class MessageManager {
             player.sendMessage(Translator.Colors(messages.getConfig().getString("reload_message")));
         }
 
-        public void noPermissions(){
+        public void noPermission(){
             player.sendMessage(Translator.Colors(messages.getConfig().getString("nopermission_message")));
         }
 

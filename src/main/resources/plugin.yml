@@ -1,6 +1,6 @@
 name: NoTNTPlus
 version: @version@
-main: me.pulsi_.notntplus.NoTNTPlus
+main: me.pulsi_.notntplus.Main
 api-version: 1.13
 prefix: NoTNT+
 load: STARTUP

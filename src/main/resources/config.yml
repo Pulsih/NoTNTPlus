@@ -10,6 +10,9 @@
 #                                                     #
 #######################################################
 
+#Receive the update message if available
+update_checker: true
+
 #Enable/Disable the tnt place -> Permission: notntplus.place
 disable_tnt_place: true
 
@@ -19,33 +22,33 @@ disable_tnt_interact: true
 #Remove the TNT which a player is trying to turn on
 remove_the_clicked_tnt: true
 
-#Disable TNT Explosions
+#Disable the TNT explosion damage
+disable_tnt_damage: true
+
+
+#######################################################
+#                     EXPLOSIONS                      #
+#######################################################
+
+#Disable TNT explosion
 disable_tnt_explosion: true
 
-#Disable TNT Pickup -> Permission: notntplus.pickup
+#Disable Creeper explosion
+disable_creeper_explosion: true
+
+#Disable TNTMinecart explosion
+disable_tntminecart_explosion: true
+
+
+#######################################################
+#                       PICKUP                        #
+#######################################################
+
+#Disable TNT Pickup -> Permission: notntplus.pickup.tnt
 disable_tnt_pickup: true
 
-#######################################################
-#                  TNT PLACE MESSAGES                 #
-#######################################################
+#Disable TNT Pickup -> Permission: notntplus.pickup.tntminecart
+disable_tntminecart_pickup: true
 
-#The message sent to the player if he try to place TNT
-place_send_message: true
-place_message: "&8[&a&lNo&c&lTNT&b&l+&8] &cYeah it's fun to randomly place tnt around the map."
-
-#The message sent to console when a player try to place TNT
-place_send_report: true
-place_report_message: "&8[&a&lNo&c&lTNT&b&l+&8] &b&l%player% &c&lIs trying to place TNT!!"
-
-
-#######################################################
-#                TNT INTERACT MESSAGES                #
-#######################################################
-
-#The interact message sent to the player
-interact_send_message: true
-interact_message: "&8[&a&lNo&c&lTNT&b&l+&8] &cNice try!"
-
-#The interact report sent to the console
-interact_send_report: true
-interact_report_message: "&8[&a&lNo&c&lTNT&b&l+&8] &b&l%player% &c&lIs trying to power on a TNT!!"
+#Disable TNT Pickup -> Permission: notntplus.pickup.creeperegg
+disable_creeperegg_pickup: true

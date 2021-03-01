@@ -6,6 +6,35 @@
 #                                                               #
 #################################################################
 
+#######################################################
+#                  TNT PLACE MESSAGES                 #
+#######################################################
+
+#The message sent to the player if he try to place TNT
+place_send_message: true
+place_message: "&8[&a&lNo&c&lTNT&b&l+&8] &cYeah it's fun to randomly place tnt around the map."
+
+#The message sent to console when a player try to place TNT
+place_send_report: true
+place_report_message: "&8[&a&lNo&c&lTNT&b&l+&8] &b&l%player% &c&lIs trying to place TNT!!"
+
+
+#######################################################
+#                TNT INTERACT MESSAGES                #
+#######################################################
+
+#The interact message sent to the player
+interact_send_message: true
+interact_message: "&8[&a&lNo&c&lTNT&b&l+&8] &cNice try!"
+
+#The interact report sent to the console
+interact_send_report: true
+interact_report_message: "&8[&a&lNo&c&lTNT&b&l+&8] &b&l%player% &c&lIs trying to power on a TNT!!"
+
+
+#######################################################
+#                    OTHER MESSAGES                   #
+#######################################################
 
 #Reload command message
 reload_message: "&8[&a&lNo&c&lTNT&b&l+&8] &aPlugin reloaded!"
