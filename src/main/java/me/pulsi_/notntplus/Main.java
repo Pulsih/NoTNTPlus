@@ -15,8 +15,6 @@ import me.pulsi_.notntplus.Panel.GUIListener;
 import me.pulsi_.notntplus.Panel.PickupManagerListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.logging.Logger;
-
 public final class Main extends JavaPlugin {
 
     private static Main instance;
@@ -30,26 +28,25 @@ public final class Main extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-        Logger logger = this.getLogger();
         if (getConfig().getBoolean("update_checker")) {
             new UpdateChecker(this, 89432).getVersion(version -> {
                 if (this.getDescription().getVersion().equalsIgnoreCase(version)) {
-                    logger.info(Translator.Colors("&8&m-----------------------"));
-                    logger.info(Translator.Colors("&8"));
-                    logger.info(Translator.Colors("&8[&a&lNo&c&lTNT&b&l+&8]"));
-                    logger.info(Translator.Colors("&2&lThere are no updates available!"));
-                    logger.info(Translator.Colors("&8"));
-                    logger.info(Translator.Colors("&8&m-----------------------"));
+                    System.out.println(Translator.Colors("&8&m-----------------------"));
+                    System.out.println(Translator.Colors("&8"));
+                    System.out.println(Translator.Colors("&8[&a&lNo&c&lTNT&b&l+&8]"));
+                    System.out.println(Translator.Colors("&2&lThere are no updates available!"));
+                    System.out.println(Translator.Colors("&8"));
+                    System.out.println(Translator.Colors("&8&m-----------------------"));
                 } else {
-                    logger.info(Translator.Colors("&8&m-----------------------"));
-                    logger.info(Translator.Colors("&8"));
-                    logger.info(Translator.Colors("&8[&a&lNo&c&lTNT&b&l+&8]"));
-                    logger.info(Translator.Colors("&2&lThere is a new update available!"));
-                    logger.info(Translator.Colors("&8"));
-                    logger.info(Translator.Colors("&7Download it at:"));
-                    logger.info(Translator.Colors("&bhttps://www.spigotmc.org/resources/%E2%9A%A1%EF%B8%8F-notnt-%E2%9A%A1%EF%B8%8F-anti-tnt-plugin-for-the-server-security.89432/"));
-                    logger.info(Translator.Colors("&8"));
-                    logger.info(Translator.Colors("&8&m-----------------------"));
+                    System.out.println(Translator.Colors("&8&m-----------------------"));
+                    System.out.println(Translator.Colors("&8"));
+                    System.out.println(Translator.Colors("&8[&a&lNo&c&lTNT&b&l+&8]"));
+                    System.out.println(Translator.Colors("&2&lThere is a new update available!"));
+                    System.out.println(Translator.Colors("&8"));
+                    System.out.println(Translator.Colors("&7Download it at:"));
+                    System.out.println(Translator.Colors("&bhttps://www.spigotmc.org/resources/%E2%9A%A1%EF%B8%8F-notnt-%E2%9A%A1%EF%B8%8F-anti-tnt-plugin-for-the-server-security.89432/"));
+                    System.out.println(Translator.Colors("&8"));
+                    System.out.println(Translator.Colors("&8&m-----------------------"));
                 }
             });
         }
@@ -60,6 +57,8 @@ public final class Main extends JavaPlugin {
         //------------------------------------------------------------------------------------------------
         // Listeners / Commands
         getCommand("notntplus").setExecutor(new Commands());
+
+        getServer().getPluginManager().registerEvents(new UpdateChecker(), this);
 
         getServer().getPluginManager().registerEvents(new GUIListener(), this);
         getServer().getPluginManager().registerEvents(new ExplosionManagerListener(), this);

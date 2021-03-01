@@ -1,6 +1,11 @@
 package me.pulsi_.notntplus.Managers;
 
 import me.pulsi_.notntplus.Main;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -22,6 +27,10 @@ public class UpdateChecker implements Listener {
     public UpdateChecker(JavaPlugin plugin, int resourceId) {
         this.plugin = plugin;
         this.resourceId = resourceId;
+    }
+
+    public UpdateChecker() {
+
     }
 
     public void getVersion(final Consumer<String> consumer) {
@@ -47,22 +56,21 @@ public class UpdateChecker implements Listener {
             Player p = e.getPlayer();
             new UpdateChecker(Main.getInstance(), 89432).getVersion(version -> {
                 if (Main.getInstance().getDescription().getVersion().equalsIgnoreCase(version)) {
-                    p.sendMessage(Translator.Colors("&8&m-----------------------"));
-                    p.sendMessage(Translator.Colors("&8"));
-                    p.sendMessage(Translator.Colors("&8[&a&lNo&c&lTNT&b&l+&8]"));
-                    p.sendMessage(Translator.Colors("&2&lThere are no updates available!"));
-                    p.sendMessage(Translator.Colors("&8"));
-                    p.sendMessage(Translator.Colors("&8&m-----------------------"));
+                    p.sendMessage(Translator.Colors("&8[&a&lNo&c&lTNT&b&l+&8] &2There are no updates available!"));
                 } else {
-                    p.sendMessage(Translator.Colors("&8&m-----------------------"));
+
+                    TextComponent update = new TextComponent("&a&nhere");
+                    update.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.spigotmc.org/resources/%E2%9A%A1%EF%B8%8F-notnt-%E2%9A%A1%EF%B8%8F-anti-tnt-plugin-for-the-server-security.89432/"));
+                    update.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("Click here to download the new version!").color(ChatColor.BLUE).create()));
+
+                    p.sendMessage(Translator.Colors("&8&m----------------------------"));
                     p.sendMessage(Translator.Colors("&8"));
                     p.sendMessage(Translator.Colors("&8[&a&lNo&c&lTNT&b&l+&8]"));
                     p.sendMessage(Translator.Colors("&2&lThere is a new update available!"));
                     p.sendMessage(Translator.Colors("&8"));
-                    p.sendMessage(Translator.Colors("&7Download it at:"));
-                    p.sendMessage(Translator.Colors("&bhttps://www.spigotmc.org/resources/%E2%9A%A1%EF%B8%8F-notnt-%E2%9A%A1%EF%B8%8F-anti-tnt-plugin-for-the-server-security.89432/"));
+                    p.sendMessage(Translator.Colors("&7Download it "+update));
                     p.sendMessage(Translator.Colors("&8"));
-                    p.sendMessage(Translator.Colors("&8&m-----------------------"));
+                    p.sendMessage(Translator.Colors("&8&m----------------------------"));
                 }
             });
         }
