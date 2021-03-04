@@ -13,42 +13,71 @@
 #Receive the update message if available
 update_checker: true
 
-#Enable/Disable the tnt place -> Permission: notntplus.place
-disable_tnt_place: true
-
-#Enable/Disable the tnt interact -> Permission: notntplus.interact
-disable_tnt_interact: true
-
-#Remove the TNT which a player is trying to turn on
-remove_the_clicked_tnt: true
-
-#Disable the TNT explosion damage
-disable_tnt_damage: true
-
 
 #######################################################
-#                     EXPLOSIONS                      #
+#                     MANAGERS                        #
 #######################################################
 
-#Disable TNT explosion
-disable_tnt_explosion: true
+place:
+  #Enable/Disable the tnt place -> Permission: notntplus.place.tnt
+  disable_tnt_place: true
 
-#Disable Creeper explosion
-disable_creeper_explosion: true
+  #Enable/Disable the tnt place -> Permission: notntplus.place.tntminecart
+  disable_tntminecart_place: true
 
-#Disable TNTMinecart explosion
-disable_tntminecart_explosion: true
+  #Enable/Disable the tnt place -> Permission: notntplus.place.creeperegg
+  disable_creeperegg_place: true
+
+  #Enable/Disable the tnt place -> Permission: notntplus.place.bed
+  disable_bed_place: true
 
 
-#######################################################
-#                       PICKUP                        #
-#######################################################
+interact:
+  #Enable/Disable the tnt interact -> Permission: notntplus.interact.tnt
+  disable_tnt_interact: true
 
-#Disable TNT Pickup -> Permission: notntplus.pickup.tnt
-disable_tnt_pickup: true
+  #Enable/Disable the tnt interact -> Permission: notntplus.interact.bed
+  disable_bed_interact: true
 
-#Disable TNT Pickup -> Permission: notntplus.pickup.tntminecart
-disable_tntminecart_pickup: true
 
-#Disable TNT Pickup -> Permission: notntplus.pickup.creeperegg
-disable_creeperegg_pickup: true
+click_remove:
+  #Remove the TNT which a player is trying to turn on
+  remove_the_clicked_tnt: true
+
+  #Remove the TNT which a player is trying to turn on
+  remove_the_clicked_bed: true
+
+
+noDamage:
+  #Disable the Explosions Damage
+  disable_explosions_damage: true
+
+
+explosions:
+
+  #Disable TNT explosion
+  disable_tnt_explosion: true
+
+  #Disable TNTMinecart explosion
+  disable_tntminecart_explosion: true
+
+  #Disable Creeper explosion
+  disable_creeper_explosion: true
+
+  #Disable Bed explosion
+  disable_bed_explosion: true
+
+
+pickup:
+
+  #Disable TNT Pickup -> Permission: notntplus.pickup.tnt
+  disable_tnt_pickup: true
+
+  #Disable TNT Pickup -> Permission: notntplus.pickup.tntminecart
+  disable_tntminecart_pickup: true
+
+  #Disable TNT Pickup -> Permission: notntplus.pickup.creeperegg
+  disable_creeperegg_pickup: true
+
+  #Disable TNT Pickup -> Permission: notntplus.pickup.bed
+  disable_bed_pickup: true

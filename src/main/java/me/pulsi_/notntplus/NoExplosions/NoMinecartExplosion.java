@@ -10,7 +10,7 @@ public class NoMinecartExplosion implements Listener {
 
     @EventHandler
     public void disableMineCartExplosion(EntityExplodeEvent e) {
-        if (Main.getInstance().getConfig().getBoolean("disable_tntminecart_explosion")) {
+        if (Main.getInstance().getConfig().getBoolean("explosions.disable_tntminecart_explosion")) {
             if (e.getEntity() instanceof Minecart) {
                 e.setCancelled(true);
             }

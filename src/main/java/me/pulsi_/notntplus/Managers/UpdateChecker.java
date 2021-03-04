@@ -12,6 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Consumer;
 
 import java.io.IOException;
@@ -56,21 +57,36 @@ public class UpdateChecker implements Listener {
             Player p = e.getPlayer();
             new UpdateChecker(Main.getInstance(), 89432).getVersion(version -> {
                 if (Main.getInstance().getDescription().getVersion().equalsIgnoreCase(version)) {
-                    p.sendMessage(Translator.Colors("&8[&a&lNo&c&lTNT&b&l+&8] &2There are no updates available!"));
+
+                    new BukkitRunnable() {
+                        @Override
+                        public void run(){
+
+                            p.sendMessage(Translator.Colors("&8[&a&lNo&c&lTNT&b&l+&8] &2There are no updates available!"));
+
+                        }
+                    }.runTaskLater(Main.getInstance(), 60);
                 } else {
 
-                    TextComponent update = new TextComponent("&a&nhere");
+                    TextComponent update = new TextComponent(Translator.Colors("&b&nClick here!"));
                     update.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.spigotmc.org/resources/%E2%9A%A1%EF%B8%8F-notnt-%E2%9A%A1%EF%B8%8F-anti-tnt-plugin-for-the-server-security.89432/"));
-                    update.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("Click here to download the new version!").color(ChatColor.BLUE).create()));
+                    update.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("Click here to download it!").color(ChatColor.LIGHT_PURPLE).create()));
 
-                    p.sendMessage(Translator.Colors("&8&m----------------------------"));
-                    p.sendMessage(Translator.Colors("&8"));
-                    p.sendMessage(Translator.Colors("&8[&a&lNo&c&lTNT&b&l+&8]"));
-                    p.sendMessage(Translator.Colors("&2&lThere is a new update available!"));
-                    p.sendMessage(Translator.Colors("&8"));
-                    p.sendMessage(Translator.Colors("&7Download it "+update));
-                    p.sendMessage(Translator.Colors("&8"));
-                    p.sendMessage(Translator.Colors("&8&m----------------------------"));
+                    new BukkitRunnable() {
+                        @Override
+                        public void run(){
+
+                            p.sendMessage(Translator.Colors("&8&m----------------------------"));
+                            p.sendMessage(Translator.Colors("&8"));
+                            p.sendMessage(Translator.Colors("&8[&a&lNo&c&lTNT&b&l+&8]"));
+                            p.sendMessage(Translator.Colors("&8"));
+                            p.sendMessage(Translator.Colors("&2&lThere is a new update available!"));
+                            p.spigot().sendMessage(update);
+                            p.sendMessage(Translator.Colors("&8"));
+                            p.sendMessage(Translator.Colors("&8&m----------------------------"));
+
+                        }
+                    }.runTaskLater(Main.getInstance(), 60);
                 }
             });
         }

@@ -7,33 +7,68 @@
 #################################################################
 
 #######################################################
-#                  TNT PLACE MESSAGES                 #
+#                  < PLACE MESSAGES >                 #
 #######################################################
 
 #The message sent to the player if he try to place TNT
-place_send_message: true
-place_message: "&8[&a&lNo&c&lTNT&b&l+&8] &cYeah it's fun to randomly place tnt around the map."
+send_tntplace_message: true
+tntplace_message: "&8[&a&lNo&c&lTNT&b&l+&8] &cYeah it's fun to randomly place tnt around the map."
 
 #The message sent to console when a player try to place TNT
-place_send_report: true
-place_report_message: "&8[&a&lNo&c&lTNT&b&l+&8] &b&l%player% &c&lIs trying to place TNT!!"
+send_tntplace_report: true
+tntplace_report_message: "&8[&a&lNo&c&lTNT&b&l+&8] &b&l%player% &c&lIs trying to place TNT!!"
+
+
+#The message sent to the player if he try to place TNT-Minecart
+send_tntminecartplace_message: true
+tntminecartplace_message: "&8[&a&lNo&c&lTNT&b&l+&8] &cReally? A TNT-Minecart?"
+
+#The message sent to console when a player try to place TNT-Minecart
+send_tntminecartplace_report: true
+tntminecartplace_report_message: "&8[&a&lNo&c&lTNT&b&l+&8] &b&l%player% &c&lIs trying to place a TNT-Minecart!!"
+
+
+#The message sent to the player if he try to place Creeper-Egg
+send_creepereggplace_message: true
+creepereggplace_message: "&8[&a&lNo&c&lTNT&b&l+&8] &cCreeper!!"
+
+#The message sent to console when a player try to place Creeper-Egg
+send_creepereggplace_report: true
+creepereggplace_report_message: "&8[&a&lNo&c&lTNT&b&l+&8] &b&l%player% &c&lIs trying to place a Creeper-Egg!!"
+
+
+#The message sent to the player if he try to place Bed
+send_bedplace_message: true
+bedplace_message: "&8[&a&lNo&c&lTNT&b&l+&8] &cSorry bro, no sleep today."
+
+#The message sent to console when a player try to place Bed
+send_bedplace_report: true
+bedplace_report_message: "&8[&a&lNo&c&lTNT&b&l+&8] &b&l%player% &c&lIs trying to place a Bed!!"
 
 
 #######################################################
-#                TNT INTERACT MESSAGES                #
+#                < INTERACT MESSAGES >                #
 #######################################################
 
 #The interact message sent to the player
-interact_send_message: true
-interact_message: "&8[&a&lNo&c&lTNT&b&l+&8] &cNice try!"
+send_tntinteract_message: true
+tntinteract_message: "&8[&a&lNo&c&lTNT&b&l+&8] &cYou can't do that!"
 
 #The interact report sent to the console
-interact_send_report: true
-interact_report_message: "&8[&a&lNo&c&lTNT&b&l+&8] &b&l%player% &c&lIs trying to power on a TNT!!"
+send_tntinteract_report: true
+tntinteract_report_message: "&8[&a&lNo&c&lTNT&b&l+&8] &b&l%player% &c&lIs interacting with a TNT!!"
+
+#The interact message sent to the player
+send_creeperinteract_message: true
+creeperinteract_message: "&8[&a&lNo&c&lTNT&b&l+&8] &cDon't touch this Creeper!"
+
+#The interact report sent to the console
+send_creeperinteract_report: true
+creeperinteract_report_message: "&8[&a&lNo&c&lTNT&b&l+&8] &b&l%player% &c&lIs interacting with a Creeper!!"
 
 
 #######################################################
-#                    OTHER MESSAGES                   #
+#                  < OTHER MESSAGES >                 #
 #######################################################
 
 #Reload command message

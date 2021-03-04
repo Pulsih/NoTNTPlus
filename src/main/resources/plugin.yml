@@ -9,3 +9,5 @@ description: The AntiTnt plugin
 commands:
   notntplus:
     aliases: [notnt+, Notnt, tnt]
+  cnotntplus:
+    aliases: [ cnotnt+, cNotnt, ctnt ]

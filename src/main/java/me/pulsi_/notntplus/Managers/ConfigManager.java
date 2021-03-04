@@ -1,11 +1,13 @@
 package me.pulsi_.notntplus.Managers;
 
+import jdk.nashorn.internal.runtime.regexp.joni.Config;
+import me.pulsi_.notntplus.Main;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.Charset;
 
 public class ConfigManager {
 
@@ -50,15 +52,18 @@ public class ConfigManager {
 
 
     public void saveConfig() {
-        if (configuration == null || file == null) {
-            return;
-        } else {
-            try {
-                getConfig().save(file);
-            } catch (IOException exception) {
-            }
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            writer.write(String.valueOf(file));
+            writer.flush();
+            writer.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
     }
+
 
 
     public void saveDefaultConfig() {
@@ -66,6 +71,7 @@ public class ConfigManager {
             plugin.saveResource(name, false);
         }
     }
+
 
 
     public void createNewFile(boolean replaceExisting) {
