@@ -17,20 +17,24 @@ public class NoTNTPlace implements Listener {
     @EventHandler
     public void NoTNT(PlayerInteractEvent e) {
         if (Main.getInstance().getConfig().getBoolean("place.disable_tnt_place")) {
-            Player player = (Player) e.getPlayer();
-            if (!(player.hasPermission("notntplus.place.tnt"))) {
+            Player p = (Player) e.getPlayer();
+            if (!(p.hasPermission("notntplus.place.tnt"))) {
                 if (e.getItem() != null) {
                     if (e.getItem().getType().equals(Material.TNT)) {
-                        e.setCancelled(true);
+                        for (String worlds : Main.getInstance().getConfig().getStringList("place_worlds.place_tnt_worlds")) {
+                            if (worlds.contains(p.getWorld().getName())) {
+                                e.setCancelled(true);
 
-                        if (messages.getConfig().getBoolean("send_tntplace_message")) {
-                            player.sendMessage(Translator.Colors(messages.getConfig().getString("tntplace_message")));
-                        }
+                                if (messages.getConfig().getBoolean("send_tntplace_message")) {
+                                    p.sendMessage(Translator.Colors(messages.getConfig().getString("tntplace_message")));
+                                }
 
-                        if (messages.getConfig().getBoolean("send_tntplace_report")) {
-                            String reportMessage = messages.getConfig().getString("tntplace_report_message");
-                            String placer = e.getPlayer().getName();
-                            Bukkit.getConsoleSender().sendMessage(Translator.Colors(reportMessage.replace("%player%", placer + "")));
+                                if (messages.getConfig().getBoolean("send_tntplace_report")) {
+                                    String reportMessage = messages.getConfig().getString("tntplace_report_message");
+                                    String placer = e.getPlayer().getName();
+                                    Bukkit.getConsoleSender().sendMessage(Translator.Colors(reportMessage.replace("%player%", placer + "")));
+                                }
+                            }
                         }
                     }
                 }

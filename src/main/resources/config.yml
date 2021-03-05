@@ -10,12 +10,14 @@
 #                                                     #
 #######################################################
 
-#Receive the update message if available
+#Receive the update message if available if you are opped
 update_checker: true
 
 
+#DO NOT LEAVE LISTS EMPTY! IT WILL BROKE THE CONFIG!
+
 #######################################################
-#                     MANAGERS                        #
+#                       PLACE                         #
 #######################################################
 
 place:
@@ -31,6 +33,25 @@ place:
   #Enable/Disable the tnt place -> Permission: notntplus.place.bed
   disable_bed_place: true
 
+#The world where the Place will be disabled
+place_worlds:
+
+  place_tnt_worlds:
+    - world
+
+  place_tntminecart_worlds:
+    - world
+
+  place_creeperegg_worlds:
+    - world
+
+  place_bed_worlds:
+    - nether
+
+
+#######################################################
+#                      INTERACT                       #
+#######################################################
 
 interact:
   #Enable/Disable the tnt interact -> Permission: notntplus.interact.tnt
@@ -39,34 +60,85 @@ interact:
   #Enable/Disable the tnt interact -> Permission: notntplus.interact.bed
   disable_bed_interact: true
 
+#The worlds where the Interact will be disabled
+interact_worlds:
 
-click_remove:
-  #Remove the TNT which a player is trying to turn on
-  remove_the_clicked_tnt: true
+  interact_tnt_worlds:
+    - world
 
-  #Remove the TNT which a player is trying to turn on
-  remove_the_clicked_bed: true
+  interact_bed_worlds:
+    - nether
 
 
-noDamage:
+#######################################################
+#                      DAMAGE                         #
+#######################################################
+
+damage:
+
   #Disable the Explosions Damage
-  disable_explosions_damage: true
+  players: true
+  mobs: true
+  #The list of Mobs protected from the TNT
+  mobs_list:
+    - PIG
+    - HORSE
+    - VILLAGER
+    - IRON_GOLEM
+    - COW
+    - CHICKEN
+    - FOX
+    - PARROT
+    - PANDA
+    - POLAR_BEAR
+    - LAMA
 
+#The worlds where TNT will not deal damage
+damage_worlds:
+
+  players_worlds:
+    - world
+
+  mobs_worlds:
+    - world
+
+#######################################################
+#                    EXPLOSIONS                       #
+#######################################################
 
 explosions:
 
   #Disable TNT explosion
-  disable_tnt_explosion: true
+  disable_tnt_explosions: true
 
   #Disable TNTMinecart explosion
-  disable_tntminecart_explosion: true
+  disable_tntminecart_explosions: true
 
   #Disable Creeper explosion
-  disable_creeper_explosion: true
+  disable_creeper_explosions: true
 
   #Disable Bed explosion
-  disable_bed_explosion: true
+  disable_bed_explosions: true
 
+#The worlds where Explosion will be disabled
+explosions_worlds:
+
+  explosions_tnt_worlds:
+    - world
+
+  explosions_tntminecart_worlds:
+    - world
+
+  explosions_creeperegg_worlds:
+    - world
+
+  explosions_bed_wolds:
+    - nether
+
+
+#######################################################
+#                       PICKUP                        #
+#######################################################
 
 pickup:
 
@@ -81,3 +153,18 @@ pickup:
 
   #Disable TNT Pickup -> Permission: notntplus.pickup.bed
   disable_bed_pickup: true
+
+#The worlds where these Items will be blocked from pickup
+pickup_worlds:
+
+  pickup_tnt_worlds:
+    - world
+
+  pickup_tntminecart_worlds:
+    - world
+
+  pickup_creeperegg_worlds:
+    - world
+
+  pickup_bed_worlds:
+    - world

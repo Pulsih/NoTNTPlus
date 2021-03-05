@@ -10,9 +10,13 @@ public class NoTNTExplosion implements Listener {
 
     @EventHandler
     public void disableTNTExplosion(EntityExplodeEvent e) {
-        if (Main.getInstance().getConfig().getBoolean("explosions.disable_tnt_explosion")) {
+        if (Main.getInstance().getConfig().getBoolean("explosions.disable_tnt_explosions")) {
             if (e.getEntityType() == EntityType.PRIMED_TNT) {
-                e.setCancelled(true);
+                for (String worlds : Main.getInstance().getConfig().getStringList("explosions_worlds.explosions_tnt_worlds")) {
+                    if (worlds.contains(e.getEntity().getWorld().getName())) {
+                        e.setCancelled(true);
+                    }
+                }
             }
         }
     }

@@ -16,7 +16,11 @@ public class NoPickupBed implements Listener {
             if (!(p.hasPermission("pickup.notntplus.pickup.bed"))) {
                 if (e.getItem() != null) {
                     if (e.getItem().getItemStack().getType().name().endsWith("_BED")) {
-                        e.setCancelled(true);
+                        for (String worlds : Main.getInstance().getConfig().getStringList("pickup_worlds.pickup_bed_worlds")) {
+                            if (worlds.contains(p.getWorld().getName())) {
+                                e.setCancelled(true);
+                            }
+                        }
                     }
                 }
             }

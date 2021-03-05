@@ -9,9 +9,13 @@ public class NoBedExplosion implements Listener {
 
     @EventHandler
     public void disableBedExplosion(EntityExplodeEvent e) {
-        if (Main.getInstance().getConfig().getBoolean("explosions.disable_bed_explosion")) {
+        if (Main.getInstance().getConfig().getBoolean("explosions.disable_bed_explosions")) {
             if (e.getEntityType().name().contains("BED")) {
-                e.setCancelled(true);
+                for (String worlds : Main.getInstance().getConfig().getStringList("explosions_worlds.explosions_bed_worlds")) {
+                    if (worlds.contains(e.getEntity().getWorld().getName())) {
+                        e.setCancelled(true);
+                    }
+                }
             }
         }
     }

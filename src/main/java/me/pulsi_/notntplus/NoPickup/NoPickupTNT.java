@@ -12,12 +12,16 @@ public class NoPickupTNT implements Listener {
     @SuppressWarnings("deprecated")
     @EventHandler
     public void noPickupMinecart(PlayerPickupItemEvent e) {
-        if (Main.getInstance().getConfig().getBoolean("disable_tnt_pickup")) {
+        if (Main.getInstance().getConfig().getBoolean("pickup.disable_tnt_pickup")) {
             Player p = (Player) e.getPlayer();
             if (!(p.hasPermission("notntplus.pickup.tnt"))) {
                 if (e.getItem() != null) {
                     if (e.getItem().getItemStack().getType() == Material.TNT) {
-                        e.setCancelled(true);
+                        for (String worlds : Main.getInstance().getConfig().getStringList("pickup_worlds.pickup_tnt_worlds")) {
+                            if (worlds.contains(p.getWorld().getName())) {
+                                e.setCancelled(true);
+                            }
+                        }
                     }
                 }
             }

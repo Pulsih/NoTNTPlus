@@ -59,12 +59,12 @@ send_tntinteract_report: true
 tntinteract_report_message: "&8[&a&lNo&c&lTNT&b&l+&8] &b&l%player% &c&lIs interacting with a TNT!!"
 
 #The interact message sent to the player
-send_creeperinteract_message: true
-creeperinteract_message: "&8[&a&lNo&c&lTNT&b&l+&8] &cDon't touch this Creeper!"
+send_bedinteract_message: true
+bedinteract_message: "&8[&a&lNo&c&lTNT&b&l+&8] &cTired?"
 
 #The interact report sent to the console
-send_creeperinteract_report: true
-creeperinteract_report_message: "&8[&a&lNo&c&lTNT&b&l+&8] &b&l%player% &c&lIs interacting with a Creeper!!"
+send_bedinteract_report: true
+bedinteract_report_message: "&8[&a&lNo&c&lTNT&b&l+&8] &b&l%player% &c&lIs interacting with a Bed!!"
 
 
 #######################################################

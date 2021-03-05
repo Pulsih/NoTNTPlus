@@ -12,12 +12,16 @@ public class NoPickupMinecart implements Listener {
     @SuppressWarnings("deprecated")
     @EventHandler
     public void noPickupMinecart(PlayerPickupItemEvent e) {
-        if (Main.getInstance().getConfig().getBoolean("disable_tntminecart_pickup")) {
+        if (Main.getInstance().getConfig().getBoolean("pickup.disable_tntminecart_pickup")) {
             Player p = (Player) e.getPlayer();
             if (!(p.hasPermission("pickup.notntplus.pickup.tntminecart"))) {
                 if (e.getItem() != null) {
                     if (e.getItem().getItemStack().getType() == Material.TNT_MINECART) {
-                        e.setCancelled(true);
+                        for (String worlds : Main.getInstance().getConfig().getStringList("pickup_worlds.pickup_tntminecart_worlds")) {
+                            if (worlds.contains(p.getWorld().getName())) {
+                                e.setCancelled(true);
+                            }
+                        }
                     }
                 }
             }

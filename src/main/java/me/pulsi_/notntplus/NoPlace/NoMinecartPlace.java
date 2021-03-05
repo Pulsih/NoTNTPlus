@@ -18,21 +18,25 @@ public class NoMinecartPlace implements Listener {
     @EventHandler
     public void NoMinecart(PlayerInteractEvent e) {
         if (Main.getInstance().getConfig().getBoolean("place.disable_tntminecart_place")) {
-            Player player = (Player) e.getPlayer();
-            if (!(player.hasPermission("notntplus.place.tntminecart"))) {
+            Player p = (Player) e.getPlayer();
+            if (!(p.hasPermission("notntplus.place.tntminecart"))) {
                 if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
                     if (e.getItem() != null) {
                         if (e.getItem().getType().equals(Material.TNT_MINECART)) {
-                            e.setCancelled(true);
+                            for (String worlds : Main.getInstance().getConfig().getStringList("place_worlds.place_tntminecart_worlds")) {
+                                if (worlds.contains(p.getWorld().getName())) {
+                                    e.setCancelled(true);
 
-                            if (messages.getConfig().getBoolean("send_tntminecartplace_message")) {
-                                player.sendMessage(Translator.Colors(messages.getConfig().getString("tntminecartplace_message")));
-                            }
+                                    if (messages.getConfig().getBoolean("send_tntminecartplace_message")) {
+                                        p.sendMessage(Translator.Colors(messages.getConfig().getString("tntminecartplace_message")));
+                                    }
 
-                            if (messages.getConfig().getBoolean("send_tntminecartplace_report")) {
-                                String reportMessage = messages.getConfig().getString("tntminecartplace_report_message");
-                                String placer = e.getPlayer().getName();
-                                Bukkit.getConsoleSender().sendMessage(Translator.Colors(reportMessage.replace("%player%", placer + "")));
+                                    if (messages.getConfig().getBoolean("send_tntminecartplace_report")) {
+                                        String reportMessage = messages.getConfig().getString("tntminecartplace_report_message");
+                                        String placer = e.getPlayer().getName();
+                                        Bukkit.getConsoleSender().sendMessage(Translator.Colors(reportMessage.replace("%player%", placer + "")));
+                                    }
+                                }
                             }
                         }
                     }

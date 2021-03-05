@@ -17,7 +17,11 @@ public class NoPickupCreeper implements Listener {
             if (!(p.hasPermission("notntplus.pickup.creeperegg"))) {
                 if (e.getItem() != null) {
                     if (e.getItem().getItemStack().getType() == Material.CREEPER_SPAWN_EGG) {
-                        e.setCancelled(true);
+                        for (String worlds : Main.getInstance().getConfig().getStringList("pickup_worlds.pickup_creeperegg_worlds")) {
+                            if (worlds.contains(p.getWorld().getName())) {
+                                e.setCancelled(true);
+                            }
+                        }
                     }
                 }
             }

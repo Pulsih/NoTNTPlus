@@ -1,10 +1,11 @@
 package me.pulsi_.notntplus;
 
-import me.pulsi_.notntplus.AntiTNT.*;
 import me.pulsi_.notntplus.Commands.Commands;
 import me.pulsi_.notntplus.Interact.NoBedInteract;
 import me.pulsi_.notntplus.Interact.NoTNTInteract;
 import me.pulsi_.notntplus.Managers.UpdateChecker;
+import me.pulsi_.notntplus.NoDamage.NoTNTDamageMobs;
+import me.pulsi_.notntplus.NoDamage.NoTNTDamagePlayers;
 import me.pulsi_.notntplus.NoExplosions.NoBedExplosion;
 import me.pulsi_.notntplus.NoPickup.NoPickupBed;
 import me.pulsi_.notntplus.NoPickup.NoPickupCreeper;
@@ -44,7 +45,8 @@ public final class Main extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new UpdateChecker(), this);
 
-        getServer().getPluginManager().registerEvents(new NoTNTDamage(), this);
+        getServer().getPluginManager().registerEvents(new NoTNTDamagePlayers(), this);
+        getServer().getPluginManager().registerEvents(new NoTNTDamageMobs(), this);
 
         getServer().getPluginManager().registerEvents(new NoTNTPlace(), this);
         getServer().getPluginManager().registerEvents(new NoMinecartPlace(), this);

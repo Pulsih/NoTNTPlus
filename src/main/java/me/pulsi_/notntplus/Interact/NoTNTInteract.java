@@ -22,21 +22,23 @@ public class NoTNTInteract implements Listener {
             if (!(p.hasPermission("notntplus.interact.tnt"))) {
                 if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
                     if (e.getClickedBlock().getType().equals(Material.TNT)) {
-                        e.setCancelled(true);
+                        if (e.getItem() != null) {
+                            if (e.getItem().getType().equals(Material.FLINT_AND_STEEL)) {
+                                for (String worlds : Main.getInstance().getConfig().getStringList("interact_worlds.interact_tnt_worlds")) {
+                                    if (worlds.contains(p.getWorld().getName())) {
+                                        e.setCancelled(true);
 
-                        if (messages.getConfig().getBoolean("send_tntinteract_message")) {
-                            p.sendMessage(Translator.Colors(messages.getConfig().getString("tntinteract_message")));
-                        }
+                                        if (messages.getConfig().getBoolean("send_tntinteract_message")) {
+                                            p.sendMessage(Translator.Colors(messages.getConfig().getString("tntinteract_message")));
+                                        }
 
-                        if (messages.getConfig().getBoolean("send_tntinteract_report")) {
-                            String reportMessage = messages.getConfig().getString("tntinteract_report_message");
-                            String activator = e.getPlayer().getName();
-                            Bukkit.getConsoleSender().sendMessage(Translator.Colors(reportMessage.replace("%player%", activator + "")));
-                        }
-
-                        if (Main.getInstance().getConfig().getBoolean("click_remove.remove_the_clicked_tnt")) {
-                            if (e.getClickedBlock().getType().equals(Material.TNT)) {
-                                e.getClickedBlock().setType(Material.AIR);
+                                        if (messages.getConfig().getBoolean("send_tntinteract_report")) {
+                                            String reportMessage = messages.getConfig().getString("tntinteract_report_message");
+                                            String activator = e.getPlayer().getName();
+                                            Bukkit.getConsoleSender().sendMessage(Translator.Colors(reportMessage.replace("%player%", activator + "")));
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
