@@ -21,7 +21,7 @@ public class NoBedPlace implements Listener {
             if (!(p.hasPermission("notntplus.place.bed"))) {
                 if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
                     if (e.getItem() != null) {
-                        if (e.getItem().getType().name().endsWith("_BED")) {
+                        if (e.getItem().getType().name().contains("BED")) {
                             for (String worlds : Main.getInstance().getConfig().getStringList("place_worlds.place_bed_worlds")) {
                                 if (worlds.contains(p.getWorld().getName())) {
                                     e.setCancelled(true);

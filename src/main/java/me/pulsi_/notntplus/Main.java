@@ -4,6 +4,7 @@ import me.pulsi_.notntplus.Commands.Commands;
 import me.pulsi_.notntplus.Interact.NoBedInteract;
 import me.pulsi_.notntplus.Interact.NoTNTInteract;
 import me.pulsi_.notntplus.Managers.UpdateChecker;
+import me.pulsi_.notntplus.NoDamage.NoBedDamagePlayers;
 import me.pulsi_.notntplus.NoDamage.NoTNTDamageMobs;
 import me.pulsi_.notntplus.NoDamage.NoTNTDamagePlayers;
 import me.pulsi_.notntplus.NoExplosions.NoBedExplosion;
@@ -35,9 +36,8 @@ public final class Main extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-
+        saveDefaultConfig();
         this.messagesConfig = new ConfigManager(this, "messages.yml");
-        this.defaultConfig = new ConfigManager(this, "config.yml");
 
         //------------------------------------------------------------------------------------------------
         // Listeners / Commands
@@ -47,6 +47,7 @@ public final class Main extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new NoTNTDamagePlayers(), this);
         getServer().getPluginManager().registerEvents(new NoTNTDamageMobs(), this);
+        getServer().getPluginManager().registerEvents(new NoBedDamagePlayers(), this);
 
         getServer().getPluginManager().registerEvents(new NoTNTPlace(), this);
         getServer().getPluginManager().registerEvents(new NoMinecartPlace(), this);

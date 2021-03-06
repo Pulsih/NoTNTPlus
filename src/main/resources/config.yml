@@ -46,7 +46,7 @@ place_worlds:
     - world
 
   place_bed_worlds:
-    - nether
+    - world_nether
 
 
 #######################################################
@@ -67,7 +67,7 @@ interact_worlds:
     - world
 
   interact_bed_worlds:
-    - nether
+    - world_nether
 
 
 #######################################################
@@ -132,8 +132,8 @@ explosions_worlds:
   explosions_creeperegg_worlds:
     - world
 
-  explosions_bed_wolds:
-    - nether
+  explosions_bed_worlds:
+    - world_nether
 
 
 #######################################################
@@ -167,4 +167,4 @@ pickup_worlds:
     - world
 
   pickup_bed_worlds:
-    - world
+    - world_nether

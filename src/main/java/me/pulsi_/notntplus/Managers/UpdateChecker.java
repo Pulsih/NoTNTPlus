@@ -55,9 +55,9 @@ public class UpdateChecker implements Listener {
     public void onJoin(PlayerJoinEvent e) {
         if (Main.getInstance().getConfig().getBoolean("update_checker")) {
             Player p = e.getPlayer();
+            if (p.isOp()) {
             new UpdateChecker(Main.getInstance(), 89432).getVersion(version -> {
                 if (Main.getInstance().getDescription().getVersion().equalsIgnoreCase(version)) {
-                    if (p.isOp()) {
 
                         new BukkitRunnable() {
                             @Override
@@ -89,8 +89,8 @@ public class UpdateChecker implements Listener {
                             }
                         }.runTaskLater(Main.getInstance(), 60);
                     }
-                }
-            });
+                });
+            }
         }
     }
 }
