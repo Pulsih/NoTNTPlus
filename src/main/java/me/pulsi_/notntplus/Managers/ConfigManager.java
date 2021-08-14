@@ -1,87 +1,64 @@
-package me.pulsi_.notntplus.Managers;
+package me.pulsi_.notntplus.managers;
 
-import jdk.nashorn.internal.runtime.regexp.joni.Config;
-import me.pulsi_.notntplus.Main;
+import me.pulsi_.notntplus.NoTNTPlus;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.*;
-import java.nio.charset.Charset;
+import java.io.File;
+import java.io.IOException;
 
 public class ConfigManager {
 
-    private final JavaPlugin plugin;
-    private final String name;
-    private File file;
-    private FileConfiguration configuration;
+    private final NoTNTPlus plugin;
+    private File configFile, messagesFile;
+    private FileConfiguration config, messages;
 
-    public ConfigManager(JavaPlugin plugin, String name) {
-        this(plugin, new File(plugin.getDataFolder(), name));
-    }
-
-    public ConfigManager(JavaPlugin plugin, File file) {
+    public ConfigManager(NoTNTPlus plugin) {
         this.plugin = plugin;
-        this.name = file.getName();
-        this.file = file;
+    }
 
-        if (!file.exists()) {
-            if (plugin.getResource(name) == null)
-                try {
-                    file.createNewFile();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    return;
-                }
-            else saveDefaultConfig();
+    public void createConfigs() {
+        configFile = new File(plugin.getDataFolder(), "config.yml");
+        messagesFile = new File(plugin.getDataFolder(), "messages.yml");
+
+        if (!configFile.exists()) {
+            configFile.getParentFile().mkdir();
+            plugin.saveResource("config.yml", false);
         }
-        reloadConfig();
-    }
-
-    public void reloadConfig() {
-        configuration = YamlConfiguration.loadConfiguration(file);
-    }
-
-
-    public FileConfiguration getConfig() {
-        if (configuration == null) {
-            reloadConfig();
+        if (!messagesFile.exists()) {
+            messagesFile.getParentFile().mkdir();
+            plugin.saveResource("messages.yml", false);
         }
-        return configuration;
+
+        config = new YamlConfiguration();
+        messages = new YamlConfiguration();
+
+        try {
+            config.load(configFile);
+            messages.load(messagesFile);
+        } catch (InvalidConfigurationException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    public FileConfiguration getConfiguration() {
+        return config;
+    }
+    public FileConfiguration getMessages() {
+        return messages;
+    }
+
+    public void reloadConfigs() {
+        config = YamlConfiguration.loadConfiguration(configFile);
+        messages = YamlConfiguration.loadConfiguration(messagesFile);
+    }
 
     public void saveConfig() {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-            writer.write(String.valueOf(file));
-            writer.flush();
-            writer.close();
-
+            config.save(configFile);
         } catch (IOException e) {
             e.printStackTrace();
-        }
-
-    }
-
-
-
-    public void saveDefaultConfig() {
-        if (!(file.exists())) {
-            plugin.saveResource(name, false);
-        }
-    }
-
-
-
-    public void createNewFile(boolean replaceExisting) {
-        try {
-            if (file.exists() && replaceExisting) {
-                file.delete();
-            }
-            file.createNewFile();
-        } catch (IOException exception) {
-            exception.printStackTrace();
         }
     }
 }

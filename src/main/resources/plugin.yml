@@ -1,13 +1,8 @@
 name: NoTNTPlus
 version: @version@
-main: me.pulsi_.notntplus.Main
+main: me.pulsi_.notntplus.NoTNTPlus
 api-version: 1.13
-prefix: NoTNT+
 load: STARTUP
-authors: [ Pulsi_ ]
-description: The AntiTnt plugin
 commands:
   notntplus:
-    aliases: [notnt+, Notnt, tnt]
-  cnotntplus:
-    aliases: [ cnotnt+, cNotnt, ctnt ]
+    aliases: [notnt+, notnt, tnt]
