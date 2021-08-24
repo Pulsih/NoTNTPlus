@@ -1,5 +1,6 @@
 name: NoTNTPlus
-version: @version@
+version: 2.2
+author: Pulsi_
 main: me.pulsi_.notntplus.NoTNTPlus
 api-version: 1.13
 load: STARTUP

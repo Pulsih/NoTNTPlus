@@ -2,6 +2,7 @@ package me.pulsi_.notntplus.events;
 
 import me.pulsi_.notntplus.NoTNTPlus;
 import me.pulsi_.notntplus.managers.MessageManager;
+import me.pulsi_.notntplus.utils.MethodUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,21 +21,21 @@ public class Place implements Listener {
     @EventHandler
     public void tntPlace(BlockPlaceEvent e) {
         Player p = e.getPlayer();
-        if (!plugin.config().getBoolean("tnt.place.disable") || !(e.getBlock().getType() == Material.TNT) || !p.hasPermission("notntplus.place.tnt")) return;
+        if (!plugin.config().getBoolean("tnt.place.disable") | e.getBlock().getType() != Material.TNT | p.hasPermission("notntplus.place.tnt")) return;
         for (String worlds : plugin.config().getStringList("tnt.place.disabled-worlds")) {
             if (worlds.contains(e.getBlock().getWorld().getName())) return;
             e.setCancelled(true);
         }
         MessageManager.cantPlace(p, plugin);
         MessageManager.placeAlert(p, plugin);
+        MethodUtils.placeAlertAdmins(p);
     }
 
     @EventHandler
     public void tntminecartPlace(PlayerInteractEvent e) {
-        if (!plugin.config().getBoolean("tntminecart.place.disable")) return;
+        Player p = e.getPlayer();
+        if (!plugin.config().getBoolean("tntminecart.place.disable") | p.hasPermission("notntplus.place.tntminecart")) return;
         if (e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR) {
-            Player p = e.getPlayer();
-            if (p.hasPermission("notntplus.place.tntminecart")) return;
             try {
                 if (!(p.getItemInHand().getType() == Material.TNT_MINECART)) return;
             } catch (NoSuchFieldError er) {
@@ -46,15 +47,15 @@ public class Place implements Listener {
             }
             MessageManager.cantPlace(p, plugin);
             MessageManager.placeAlert(p, plugin);
+            MethodUtils.placeAlertAdmins(p);
         }
     }
 
     @EventHandler
     public void creeperPlace(PlayerInteractEvent e) {
-        if (!plugin.config().getBoolean("creeperegg.place.disable")) return;
+        Player p = e.getPlayer();
+        if (!plugin.config().getBoolean("creeperegg.place.disable") | p.hasPermission("notntplus.place.creeperegg")) return;
         if (e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR) {
-            Player p = e.getPlayer();
-            if (p.hasPermission("notntplus.place.creeperegg")) return;
             try {
                 if (!(p.getItemInHand().getType() == Material.CREEPER_SPAWN_EGG)) return;
             } catch (NoSuchFieldError er) {
@@ -66,20 +67,20 @@ public class Place implements Listener {
             }
             MessageManager.cantPlace(p, plugin);
             MessageManager.placeAlert(p, plugin);
+            MethodUtils.placeAlertAdmins(p);
         }
     }
 
     @EventHandler
     public void bedPlace(BlockPlaceEvent e) {
-        if (!plugin.config().getBoolean("bed.place.disable")) return;
-        if (!(e.getBlock().getType().name().contains("BED"))) return;
         Player p = e.getPlayer();
-        if (p.hasPermission("notntplus.place.bed")) return;
+        if (!plugin.config().getBoolean("bed.place.disable") | p.hasPermission("notntplus.place.bed") | !(e.getBlock().getType().name().contains("BED"))) return;
         for (String worlds : plugin.config().getStringList("bed.place.disabled-worlds")) {
             if (worlds.contains(e.getBlock().getWorld().getName())) return;
             e.setCancelled(true);
         }
         MessageManager.cantPlace(p, plugin);
         MessageManager.placeAlert(p, plugin);
+        MethodUtils.placeAlertAdmins(p);
     }
 }

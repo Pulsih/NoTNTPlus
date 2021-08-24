@@ -1,14 +1,16 @@
 # NoTNTPlus messages configuration
 
 # If you don't want one of these messages, comment it or remove it.
+
 # Plugin
 no-permission: "&8[&a&lNo&c&lTNT&b&l+&8] &cYou do not have the permission!"
-unknown-command: "&8[&a&lNo&c&lTNT&b&l+&8] &cYou do not have the permission!"
+reload-message: "&8[&a&lNo&c&lTNT&b&l+&8] &aPlugin successfully reloaded!"
+unknown-command: "&8[&a&lNo&c&lTNT&b&l+&8] &cUnknown Command!"
 
 # Place
 deny-place: "&8[&a&lNo&c&lTNT&b&l+&8] &cYou can't place this item!"
 place-alert: "&8[&a&lNo&c&lTNT&b&l+&8] &c%player% is trying to place a %item%!"
 
 # Interact
-deny-interact: "&8[&a&lNo&c&lTNT&b&l+&8] &cYou interact with this block!"
+deny-interact: "&8[&a&lNo&c&lTNT&b&l+&8] &cYou can't interact with this block!"
 interact-alert: "&8[&a&lNo&c&lTNT&b&l+&8] &c%player% has tried to interact with a %item%!"

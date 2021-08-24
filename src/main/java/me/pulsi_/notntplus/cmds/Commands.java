@@ -21,7 +21,7 @@ public class Commands implements CommandExecutor {
 
         if (args.length == 0) {
             s.sendMessage("");
-            s.sendMessage(ChatUtils.c("&7Running &8[&a&lNo&c&lTNT&b&l+&8] &7v%v").replace("%v", plugin.getDescription().getVersion()));
+            s.sendMessage(ChatUtils.c("&7Running &8[&a&lNo&c&lTNT&b&l+&8] &7v" + plugin.getDescription().getVersion()));
             s.sendMessage(ChatUtils.c("&7Plugin made by &aPulsi_"));
             s.sendMessage(ChatUtils.c("&7Type &a/tnt help &7for help!"));
             s.sendMessage("");
@@ -30,17 +30,17 @@ public class Commands implements CommandExecutor {
         if (args.length == 1) {
             switch (args[0]) {
                 case "help":
-                    if (s.hasPermission("notntplus.help")) {
-                        s.sendMessage("");
-                        s.sendMessage(ChatUtils.c("&8[&a&lNo&c&lTNT&b&l+&8] &aHelp Page"));
-                        s.sendMessage("");
-                        s.sendMessage(ChatUtils.c("&a/notntplus reload &7Reload the plugin."));
-                        s.sendMessage(ChatUtils.c("&a/notntplus help &7See this page."));
-                        s.sendMessage(ChatUtils.c("&a/notntplus panel &7Open the Control Panel."));
-                        s.sendMessage("");
-                    } else {
+                    if (!s.hasPermission("notntplus.help")) {
                         MessageManager.noPermission(s, plugin);
+                        return false;
                     }
+                    s.sendMessage("");
+                    s.sendMessage(ChatUtils.c("&8[&a&lNo&c&lTNT&b&l+&8] &aHelp Page"));
+                    s.sendMessage("");
+                    s.sendMessage(ChatUtils.c("&a/notntplus reload &7Reload the plugin."));
+                    s.sendMessage(ChatUtils.c("&a/notntplus help &7See this page."));
+                    s.sendMessage(ChatUtils.c("&a/notntplus panel &7Open the Control Panel."));
+                    s.sendMessage("");
                     break;
 
                 case "reload":
@@ -49,7 +49,7 @@ public class Commands implements CommandExecutor {
                         return false;
                     }
                     plugin.reloadConfigs();
-                    s.sendMessage(ChatUtils.c("&8[&a&lNo&c&lTNT&b&l+&8] &aPlugin reloaded!"));
+                    MessageManager.reloadMessage(s, plugin);
                     break;
 
                 case "panel":
@@ -63,6 +63,10 @@ public class Commands implements CommandExecutor {
                     }
                     new Gui(plugin).openGui((Player) s);
                     s.sendMessage(ChatUtils.c("&8[&a&lNo&c&lTNT&b&l+&8] &aOpened the Control Panel!"));
+                    break;
+
+                default:
+                    MessageManager.unknownCommand(s, plugin);
                     break;
             }
         }

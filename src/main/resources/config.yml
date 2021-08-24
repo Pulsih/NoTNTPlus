@@ -1,5 +1,8 @@
 # NoTNTPlus Configuration File
 update-checker: true
+# This options will send alerts of placing / interacting
+# to players that has the permission notntplus.alerts
+admin-broadcast-alerts: true
 tnt:
   place:
     disable: true

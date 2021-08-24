@@ -12,6 +12,10 @@ public class MessageManager {
         s.sendMessage(ChatUtils.c(plugin.messages().getString("reload-message")));
     }
 
+    public static void unknownCommand(CommandSender s, NoTNTPlus plugin) {
+        s.sendMessage(ChatUtils.c(plugin.messages().getString("unknown-command")));
+    }
+
     public static void noPermission(CommandSender s, NoTNTPlus plugin) {
         s.sendMessage(ChatUtils.c(plugin.messages().getString("no-permission")));
     }
@@ -28,13 +32,24 @@ public class MessageManager {
 
     public static void placeAlert(Player p, NoTNTPlus plugin) {
         if (plugin.messages().getString("place-alert") == null) return;
-        plugin.getServer().getConsoleSender().sendMessage(ChatUtils.c(plugin.messages().getString("place-alert")
+        ChatUtils.consoleMessage(plugin.messages().getString("place-alert").replace("%player%", p.getName()).replace("%item%", p.getItemInHand().getType().toString()));
+    }
+
+    public static void placeAlertAdmin(Player admin, Player p, NoTNTPlus plugin) {
+        if (plugin.messages().getString("place-alert") == null) return;
+        admin.sendMessage(ChatUtils.c(plugin.messages().getString("place-alert")
                 .replace("%player%", p.getName()).replace("%item%", p.getItemInHand().getType().toString())));
     }
 
     public static void interactAlert(Player p, PlayerInteractEvent e, NoTNTPlus plugin) {
         if (plugin.messages().getString("interact-alert") == null) return;
-        p.sendMessage(ChatUtils.c(plugin.messages().getString("interact-alert")
-                .replace("%player%", p.getName()).replace("%item%", e.getClickedBlock().getType().toString())));
+        ChatUtils.consoleMessage(plugin.messages().getString("interact-alert")
+                .replace("%player%", p.getName()).replace("%item%", e.getClickedBlock().getType().toString().replace("_BLOCK", "")));
+    }
+
+    public static void interactAlertAdmin(Player admin, Player p, PlayerInteractEvent e, NoTNTPlus plugin) {
+        if (plugin.messages().getString("interact-alert") == null) return;
+        admin.sendMessage(ChatUtils.c(plugin.messages().getString("interact-alert")
+                .replace("%player%", p.getName()).replace("%item%", e.getClickedBlock().getType().toString().replace("_BLOCK", ""))));
     }
 }
